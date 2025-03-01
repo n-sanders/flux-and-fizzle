@@ -16,6 +16,7 @@
   --footer-text-color: #495057;
   --border-color: #dee2e6;
   --panel-bg: #f8f9fa;
+  --contrast-color: #198754;
 }
 
 /* Dark theme */
@@ -34,6 +35,7 @@
   --footer-text-color: #cccccc;
   --border-color: #444444;
   --panel-bg: #2a2a2a;
+  --contrast-color: #dc3545;
 }
 
 /* Purple theme */
@@ -52,6 +54,7 @@
   --footer-text-color: #4a154b;
   --border-color: #d0bfff;
   --panel-bg: #f3ebff;
+  --contrast-color: #dc3545;
 }
 
 body {
@@ -147,7 +150,7 @@ body {
 }
 
 .legend-possible {
-  background-color: #e6f7ff;
+  background-color: #9dcdb7;
 }
 
 .legend-highlighted {
@@ -181,6 +184,38 @@ body {
 .theme-purple .legend-hover {
   background-color: #d0bfff;
 }
+
+/* Clue panel styles */
+.clue-panel {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 15px;
+  background-color: var(--panel-bg);
+}
+
+/* Initial welcome message */
+.initial-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: var(--text-color);
+}
+
+.initial-message h4 {
+  margin-bottom: 15px;
+  font-size: 30px;
+  color: var(--contrast-color);
+}
+
+.initial-message p {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
 
 /* Button styles */
 .btn {

@@ -4,7 +4,7 @@ let currentStopIndex = 0;
 let svgDoc;
 let currentTheme = 'default';
 
-// Load scenario on page load
+// Initialize game
 document.addEventListener('DOMContentLoaded', () => {
   setupMap();
   
@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     loadScenario('flux-o-graph');
     updateActiveNavLink('scenario-flux-o-graph');
+  });
+  
+  document.getElementById('welcome').addEventListener('click', (e) => {
+    e.preventDefault();
+    showInitialMessage();
+    updateActiveNavLink('welcome');
   });
   
   // Set up event listeners for theme buttons
@@ -36,9 +42,54 @@ document.addEventListener('DOMContentLoaded', () => {
     setTheme(savedTheme);
   }
   
-  // Load default scenario
-  loadScenario('cloud-fireworks');
+  // Show initial message instead of loading a default scenario
+  showInitialMessage();
 });
+
+// Show initial message before any scenario is selected
+function showInitialMessage() {
+  // Reset any existing scenario data
+  currentScenario = null;
+  currentStopIndex = 0;
+  visitedStates = new Set();
+  
+  // Clear scenario title
+  document.getElementById('scenario-title').textContent = 'Flux & Fizzle';
+  
+  // Load welcome message from JSON file
+  fetch('data/welcome.json')
+    .then(response => response.json())
+    .then(data => {
+      // Show welcome message in clue panel
+      const cluePanel = document.getElementById('clue-panel');
+      cluePanel.innerHTML = `
+        <div class="initial-message">
+          <h4 class="text-center">${data.title}</h4>
+          <p>${data.description}</p>
+          <p>${data.promptMessage}</p>
+        </div>
+      `;
+
+      const witnessPanel = document.getElementById('witness-panel');
+      witnessPanel.innerHTML = `<img src="images/${data.welcomeImage}" alt="inventor" class="img-fluid">`;
+    })
+    .catch(error => {
+      console.error('Error loading welcome message:', error);
+      // Fallback message if JSON fails to load
+      const cluePanel = document.getElementById('clue-panel');
+      cluePanel.innerHTML = `
+        <div class="initial-message">
+          <h4 class="text-center">Welcome to Flux & Fizzle!</h4>
+          <p>Please select a scenario from the top menu to begin your adventure.</p>
+        </div>
+      `;
+    });
+    
+  // Reset map if it exists
+  if (svgDoc) {
+    resetMap();
+  }
+}
 
 // Set up theme selection buttons
 function setupThemeSelection() {
@@ -180,6 +231,7 @@ function showStop(index) {
   if (stop.nextState === null) {
     // Final stop: show victory message and inventor image
     cluePanel.innerHTML = `
+      <p><strong>Current State:</strong> ${stop.state}</p>
       <p><strong>Fact:</strong> ${stop.fact}</p>
       <p>${stop.clue}</p>
       <p>Congratulations! You've caught up with ${currentScenario.inventor}.</p>
@@ -187,6 +239,7 @@ function showStop(index) {
   } else {
     // Regular stop: show fact, clue, and notebook button
     cluePanel.innerHTML = `
+      <p><strong>Current State:</strong> ${stop.state}</p>
       <p><strong>Fact:</strong> ${stop.fact}</p>
       <p><strong>Clue:</strong> ${stop.clue}</p>
       <button id="open-notebook" class="btn btn-secondary">Open Notebook</button>
@@ -224,7 +277,7 @@ function setupMap() {
     // Add styles for highlighted and hover states
     style.textContent += `
       .highlighted { fill: yellow !important; }
-      .possible-state { fill: var(--possible-state-color, #e6f7ff); }
+      .possible-state { fill: var(--possible-state-color, #9dcdb7); }
       path { transition: fill 0.2s; }
       path:hover:not(.highlighted) { 
         fill: var(--hover-state-color, #d3d3d3); 
@@ -280,9 +333,9 @@ function updateMapHoverColor() {
     highlightColor = '#9966cc'; // Deeper purple for highlighted states
     possibleStateColor = '#e6ccff'; // Lighter purple for possible states
   } else {
-    hoverColor = '#d3d3d3'; // Default light gray hover
+    hoverColor = '#3498db'; // Default light cyan hover
     highlightColor = '#ffeb3b'; // Yellow for highlighted states in default theme
-    possibleStateColor = '#e6f7ff'; // Light blue for possible states in default theme
+    possibleStateColor = '#9dcdb7'; // Light blue for possible states in default theme
   }
   
   // Set the CSS variables for hover and highlight colors

@@ -10,9 +10,14 @@
     "South Dakota",
     "North Dakota",
     "Nebraska",
-    "Illinois"
+    "Illinois",
+    "Missouri",
+    "Kansas",
+    "Indiana",
+    "Ohio",
+    "Michigan"
   ],
-  "research": "Log 23: Floated over Minnesota’s 10,000 lakes today—water’s perfect for fishing folks! Drifted east to where dairy rules, cheese and milk everywhere. Next, I’ll head south to corn country—fields so big you’d get lost! Then west to where oil pumps chug along, black gold under the plains. Cloud fireworks are fizzing great!",
+  "research": "<p>Maximizing local industries will cause a huge boon for the state economies! Every outdoor industry would benefit from a little more sunshine.</p><p><strong>Illinois</strong>: The soybean capital of the Midwest thrives on sun-soaked fields. Clear skies courtesy of my invention could supercharge soy growth—just think of the tofu and soy sauce possibilities!</p><p><strong>Iowa</strong>: Known for its corn fields, this state could see a bumper crop with clear skies. Increased yields are a sure thing, as long as I don’t accidentally disperse a rain cloud and soggy-up the harvest!</p><p><strong>Minnesota</strong>: The Land of 10,000 Lakes gives plenty of places for the locals to fish, and who wouldn’t want to fish in the sunshine? My Cloud Fireworks could make every cast a golden one—just don’t forget the sunscreen!</p><p><strong>North Dakota</strong>: Famous for its honey production, those busy bees need sunny days to buzz around collecting nectar. Cloud Fireworks could mean sweeter yields—imagine the headlines: ‘Fizzle’s Fireworks Save the Honey Harvest!’</p><p><strong>South Dakota</strong>: Oil fields stretch across the plains, pumping black gold under the sun. My fireworks could keep the skies clear for smoother drilling operations—no pesky clouds to slow down the rigs!</p><p><strong>Wisconsin</strong>: Dairy cows here churn out the most cheese in the country, and I know I’m happier milking in the sun. Clear skies might just make those cows moo with glee—and boost cheese production to boot!</p>",
   "stops": [
     {
       "state": "Minnesota",

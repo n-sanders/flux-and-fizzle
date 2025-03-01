@@ -1,0 +1,6 @@
+{
+  "title": "Welcome to Flux & Fizzle: Chase the Chaos!",
+  "description": "Percy Flux and Fiona Fizzle are brilliant inventors who travel across the United States, field-testing their wild and wacky creations. Their experiments are as unpredictable as they are ingenious. Unfortunately, this pair gets so caught up in their work that their enthusiasm leaves a trail of cryptic clues, curious characters, and colorful chaos in their wake. It's up to you to chase them down, state by state, piecing together their path using your geography knowledge. Innovation is a messy journey, but abandoning their team and running off solo can lead to the next idea going off with a bang instead of a breakthrough.",
+  "promptMessage": "Please select a scenario from the top menu to begin your adventure.",
+  "welcomeImage": "fizzle.jpg"
+}
