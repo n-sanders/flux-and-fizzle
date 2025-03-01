@@ -223,7 +223,7 @@ function setupMap() {
     
     // Add styles for highlighted and hover states
     style.textContent += `
-      .highlighted { fill: yellow; }
+      .highlighted { fill: yellow !important; }
       .possible-state { fill: var(--possible-state-color, #e6f7ff); }
       path { transition: fill 0.2s; }
       path:hover:not(.highlighted) { 
@@ -244,7 +244,7 @@ function setupMap() {
           opacity: 0.8;
         }
       }
-      .possible-state {
+      .possible-state:not(.highlighted) {
         animation: pulse 2s infinite;
       }
     `;
@@ -253,17 +253,7 @@ function setupMap() {
     updateMapHoverColor();
 
     const paths = svgDoc.querySelectorAll('path');
-    paths.forEach(path => {
-      // Add title elements for states that don't have them
-      if (!path.querySelector('title') && path.getAttribute('id')) {
-        const stateId = path.getAttribute('id');
-        if (stateId && stateId.length === 2) { // State abbreviations are 2 letters
-          const titleEl = svgDoc.createElementNS("http://www.w3.org/2000/svg", "title");
-          titleEl.textContent = getStateNameFromAbbreviation(stateId.toUpperCase());
-          path.appendChild(titleEl);
-        }
-      }
-      
+    paths.forEach(path => {      
       path.addEventListener('click', () => {
         const titleElement = path.querySelector('title');
         if (titleElement) {
@@ -273,26 +263,6 @@ function setupMap() {
       });
     });
   });
-}
-
-// Convert state abbreviation to full name (if needed)
-function getStateNameFromAbbreviation(abbr) {
-  const stateMap = {
-    'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas',
-    'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware',
-    'FL': 'Florida', 'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho',
-    'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas',
-    'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland',
-    'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi',
-    'MO': 'Missouri', 'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada',
-    'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York',
-    'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma',
-    'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina',
-    'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah',
-    'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia',
-    'WI': 'Wisconsin', 'WY': 'Wyoming', 'DC': 'District of Columbia'
-  };
-  return stateMap[abbr] || abbr;
 }
 
 // Update map hover color based on current theme
@@ -325,8 +295,8 @@ function updateMapHoverColor() {
     // Replace the highlighted style rule
     const styleContent = styleElement.textContent;
     const updatedStyle = styleContent.replace(
-      /\.highlighted\s*{\s*fill:\s*[^;]+;?\s*}/,
-      `.highlighted { fill: ${highlightColor}; }`
+      /\.highlighted\s*{\s*fill:\s*[^;!]+(!important)?;?\s*}/,
+      `.highlighted { fill: ${highlightColor} !important; }`
     );
     styleElement.textContent = updatedStyle;
   }
@@ -334,8 +304,24 @@ function updateMapHoverColor() {
 
 // Check if the selected state is correct
 function checkStateSelection(selectedState) {
+  // First, remove highlighting from any previously highlighted state
+  if (svgDoc) {
+    const paths = svgDoc.querySelectorAll('path.highlighted');
+    paths.forEach(path => path.classList.remove('highlighted'));
+    
+    // Add highlighting to the selected state
+    const allPaths = svgDoc.querySelectorAll('path');
+    allPaths.forEach(path => {
+      const titleElement = path.querySelector('title');
+      if (titleElement && titleElement.textContent.trim().toLowerCase() === selectedState.toLowerCase()) {
+        path.classList.add('highlighted');
+      }
+    });
+  }
+  
+  // Then check if the selection is correct
   const currentStop = currentScenario.stops[currentStopIndex];
-  if (selectedState.toLowerCase() === currentStop.nextState.toLowerCase()) {
+  if (selectedState.toLowerCase() === currentStop.nextState?.toLowerCase()) {
     currentStopIndex++;
     showStop(currentStopIndex);
   } else {
