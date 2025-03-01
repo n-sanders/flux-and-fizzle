@@ -1,0 +1,47 @@
+{
+  "scenarioName": "Flux-o-Graph",
+  "inventor": "Percy Flux",
+  "scenarioImage": "flux.jpg",
+  "introduction": "Percy Flux has vanished with his Flux-o-Graph Camera, a gadget meant to capture the spirit of Midwest landmarks. He was last spotted adjusting its lenses at the base of Mount Rushmore in South Dakota. Chase him down before he recalibrates it out of reach!",
+  "possibleStates": [
+    "Minnesota",
+    "Wisconsin",
+    "Iowa",
+    "South Dakota",
+    "North Dakota",
+    "Nebraska",
+    "Illinois",
+    "Texas"
+  ],
+  "research": "Field Log 14: Initiated Flux-o-Graph at Mount Rushmore—granite faces demand precise calibration, 82% clarity. Moved north to North Dakota’s Badlands—rugged buttes test depth perception, wind interference noted. Eastward to Minnesota, Lake Superior’s vast waters shimmer—lens fogged briefly, adjusted. South now, Iowa’s Mississippi River flows from those lakes—current’s rhythm syncs with camera’s hum. Landmarks captured: 4/4.",
+  "stops": [
+    {
+      "state": "South Dakota",
+      "fact": "Mount Rushmore features the carved faces of four U.S. presidents—Washington, Jefferson, Lincoln, and Roosevelt—etched into granite.",
+      "witnessImage": "ranger.png",
+      "clue": "Percy muttered about focusing his camera north where the land turns wild and rugged!",
+      "nextState": "North Dakota"
+    },
+    {
+      "state": "North Dakota",
+      "fact": "The Badlands in Theodore Roosevelt National Park are a rugged landscape of eroded buttes and deep canyons.",
+      "witnessImage": "hiker.png",
+      "clue": "Percy’s camera whirred east toward a state with water so vast it’s like an inland sea!",
+      "nextState": "Minnesota"
+    },
+    {
+      "state": "Minnesota",
+      "fact": "Lake Superior, touching Minnesota’s north shore, is the largest freshwater lake in the world by surface area.",
+      "witnessImage": "keeper.png",
+      "clue": "Percy packed up and drifted south to where a river’s birthplace flows into legend!",
+      "nextState": "Iowa"
+    },
+    {
+      "state": "Iowa",
+      "fact": "The Mississippi River, starting at Lake Itasca in Minnesota, flows through Iowa’s eastern border, shaping its history.",
+      "witnessImage": "percy.png",
+      "clue": "Caught him! Percy’s Flux-o-Graph is humming along the riverbank, lenses dialed to perfection!",
+      "nextState": null
+    }
+  ]
+}

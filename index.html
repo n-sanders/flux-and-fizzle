@@ -5,25 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flux & Fizzle: Chase the Chaos</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Flux & Fizzle</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" id="scenario-cloud-fireworks" href="#">Cloud Fireworks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="scenario-flux-o-graph" href="#">Flux-o-Graph</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h1 id="scenario-title" class="mb-3"></h1>
+      </div>
+    </div>
+    
     <!-- Top Row: Witness and Clue Panels -->
     <div class="row">
-      <div class="col-4" id="witness-panel">
+      <div class="col-md-4" id="witness-panel">
         <!-- Witness image will be dynamically inserted -->
       </div>
-      <div class="col-8" id="clue-panel">
+      <div class="col-md-8" id="clue-panel">
         <!-- Introduction, facts, clues, and buttons will be here -->
       </div>
     </div>
+    
     <!-- Bottom Row: Map Panel -->
     <div class="row">
       <div class="col-12" id="map-panel">
-        <object type="image/svg+xml" data="assets/us-map.svg" id="us-map"></object>
+        <div class="panel map-panel">
+          <div class="map-container">
+            <object id="us-map" data="assets/us-map.svg" type="image/svg+xml"></object>
+          </div>
+          <div class="map-legend mt-2 d-flex justify-content-center">
+            <div class="legend-item mx-2">
+              <span class="legend-color legend-possible"></span> Possible States
+            </div>
+            <div class="legend-item mx-2">
+              <span class="legend-color legend-highlighted"></span> Selected State
+            </div>
+            <div class="legend-item mx-2">
+              <span class="legend-color legend-hover"></span> Hovered State
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Footer with Theme Selection -->
+  <footer>
+    <div class="container">
+      <div>
+        <span>&copy; 2025 Flux & Fizzle</span>
+      </div>
+      <div class="theme-selector">
+        <span>Themes:</span>
+        <div class="theme-btn theme-default active" data-theme="default" title="Default Theme"></div>
+        <div class="theme-btn theme-dark" data-theme="dark" title="Dark Theme"></div>
+        <div class="theme-btn theme-purple" data-theme="purple" title="Purple Theme"></div>
+      </div>
+    </div>
+  </footer>
 
   <!-- Notebook Modal -->
   <div class="modal fade" id="notebookModal" tabindex="-1" aria-labelledby="notebookModalLabel" aria-hidden="true">
