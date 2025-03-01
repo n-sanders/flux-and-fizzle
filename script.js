@@ -3,30 +3,31 @@ let currentScenario;
 let currentStopIndex = 0;
 let svgDoc;
 let currentTheme = 'default';
+let gameSequence; // New: Holds the random sequence of stops
 
 // Initialize game
 document.addEventListener('DOMContentLoaded', () => {
   setupMap();
-  
+
   // Set up event listeners for navigation links
   document.getElementById('scenario-cloud-fireworks').addEventListener('click', (e) => {
     e.preventDefault();
     loadScenario('cloud-fireworks');
     updateActiveNavLink('scenario-cloud-fireworks');
   });
-  
+
   document.getElementById('scenario-flux-o-graph').addEventListener('click', (e) => {
     e.preventDefault();
     loadScenario('flux-o-graph');
     updateActiveNavLink('scenario-flux-o-graph');
   });
-  
+
   document.getElementById('welcome').addEventListener('click', (e) => {
     e.preventDefault();
     showInitialMessage();
     updateActiveNavLink('welcome');
   });
-  
+
   // Set up event listeners for theme buttons
   document.querySelectorAll('.theme-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -35,13 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('preferredTheme', theme);
     });
   });
-  
+
   // Load saved theme if any
   const savedTheme = localStorage.getItem('preferredTheme');
   if (savedTheme) {
     setTheme(savedTheme);
   }
-  
+
   // Show initial message instead of loading a default scenario
   showInitialMessage();
 });
@@ -51,11 +52,11 @@ function showInitialMessage() {
   // Reset any existing scenario data
   currentScenario = null;
   currentStopIndex = 0;
-  visitedStates = new Set();
-  
+  gameSequence = null; // Reset game sequence
+
   // Clear scenario title
   document.getElementById('scenario-title').textContent = 'Flux & Fizzle';
-  
+
   // Load welcome message from JSON file
   fetch('data/welcome.json')
     .then(response => response.json())
@@ -84,7 +85,7 @@ function showInitialMessage() {
         </div>
       `;
     });
-    
+
   // Reset map if it exists
   if (svgDoc) {
     resetMap();
@@ -94,22 +95,22 @@ function showInitialMessage() {
 // Set up theme selection buttons
 function setupThemeSelection() {
   const themeButtons = document.querySelectorAll('.theme-btn');
-  
+
   // Load saved theme from localStorage if available
   const savedTheme = localStorage.getItem('flux-fizzle-theme');
   if (savedTheme) {
     setTheme(savedTheme);
   }
-  
+
   themeButtons.forEach(button => {
     button.addEventListener('click', () => {
       const theme = button.getAttribute('data-theme');
       setTheme(theme);
-      
+
       // Update active button
       themeButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
-      
+
       // Save theme preference
       localStorage.setItem('flux-fizzle-theme', theme);
     });
@@ -120,14 +121,14 @@ function setupThemeSelection() {
 function setTheme(theme) {
   // Remove any existing theme classes
   document.body.classList.remove('theme-dark', 'theme-purple');
-  
+
   // Add the new theme class if it's not default
   if (theme !== 'default') {
     document.body.classList.add(`theme-${theme}`);
   }
-  
+
   currentTheme = theme;
-  
+
   // Update active button
   const themeButtons = document.querySelectorAll('.theme-btn');
   themeButtons.forEach(btn => {
@@ -136,7 +137,7 @@ function setTheme(theme) {
       btn.classList.add('active');
     }
   });
-  
+
   // Update map hover color based on theme
   updateMapHoverColor();
 }
@@ -147,7 +148,7 @@ function updateActiveNavLink(activeId) {
   document.querySelectorAll('.nav-link').forEach(link => {
     link.classList.remove('active');
   });
-  
+
   // Add active class to the selected link
   document.getElementById(activeId).classList.add('active');
 }
@@ -158,14 +159,15 @@ function loadScenario(scenarioName) {
     .then(response => response.json())
     .then(data => {
       currentScenario = data;
+      setupGameSequence(); // New: Generate random sequence of stops
       // Update scenario title
       document.getElementById('scenario-title').textContent = data.scenarioName;
       showIntroduction();
-      
+
       // Reset the state if map is already initialized
       if (svgDoc) {
         resetMap();
-        
+
         // Highlight possible states if they exist in the scenario
         if (data.possibleStates && Array.isArray(data.possibleStates)) {
           highlightPossibleStates(data.possibleStates);
@@ -173,6 +175,21 @@ function loadScenario(scenarioName) {
       }
     })
     .catch(error => console.error(`Error loading scenario ${scenarioName}:`, error));
+}
+
+// New: Generate a random sequence of stops
+function setupGameSequence() {
+  let stopsCopy = [...currentScenario.stops];
+  shuffleArray(stopsCopy);
+  gameSequence = stopsCopy.slice(0, currentScenario.scenarioLength);
+}
+
+// New: Helper function to shuffle an array (Fisher-Yates shuffle)
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
 }
 
 // Reset map highlighting
@@ -188,7 +205,7 @@ function resetMap() {
 // Highlight possible states on the map
 function highlightPossibleStates(stateNames) {
   if (!svgDoc) return;
-  
+
   const paths = svgDoc.querySelectorAll('path');
   stateNames.forEach(stateName => {
     paths.forEach(path => {
@@ -204,10 +221,10 @@ function highlightPossibleStates(stateNames) {
 function showIntroduction() {
   const cluePanel = document.getElementById('clue-panel');
   const witnessPanel = document.getElementById('witness-panel');
-  
+
   // Clear witness panel
   witnessPanel.innerHTML = `<img src="images/${currentScenario.scenarioImage}" alt="inventor" class="img-fluid">`;
-  
+
   cluePanel.innerHTML = `
     <p>${currentScenario.introduction}</p>
     <button id="start-chase" class="btn btn-primary">Start Chase</button>
@@ -223,28 +240,29 @@ function startChase() {
 
 // Show the current stop's details
 function showStop(index) {
-  const stop = currentScenario.stops[index];
+  const stop = gameSequence[index];
   const witnessPanel = document.getElementById('witness-panel');
   witnessPanel.innerHTML = `<img src="images/${stop.witnessImage}" alt="Witness" class="img-fluid">`;
 
   const cluePanel = document.getElementById('clue-panel');
-  if (stop.nextState === null) {
-    // Final stop: show victory message and inventor image
+  if (index < currentScenario.scenarioLength - 1) {
+    // Regular stop: show fact and clue for the next stop
+    const nextStop = gameSequence[index + 1];
     cluePanel.innerHTML = `
       <p><strong>Current State:</strong> ${stop.state}</p>
       <p><strong>Fact:</strong> ${stop.fact}</p>
-      <p>${stop.clue}</p>
-      <p>Congratulations! You've caught up with ${currentScenario.inventor}.</p>
-    `;
-  } else {
-    // Regular stop: show fact, clue, and notebook button
-    cluePanel.innerHTML = `
-      <p><strong>Current State:</strong> ${stop.state}</p>
-      <p><strong>Fact:</strong> ${stop.fact}</p>
-      <p><strong>Clue:</strong> ${stop.clue}</p>
+      <p><strong>Clue to next state:</strong> ${nextStop.clue}</p>
       <button id="open-notebook" class="btn btn-secondary">Open Notebook</button>
     `;
     document.getElementById('open-notebook').addEventListener('click', openNotebook);
+  } else {
+    // Final stop: show victory message
+    cluePanel.innerHTML = `
+      <p><strong>Current State:</strong> ${stop.state}</p>
+      <p><strong>Fact:</strong> ${stop.fact}</p>
+      <p>Congratulations! You've caught up with ${currentScenario.inventor}.</p>
+    `;
+    witnessPanel.innerHTML = `<img src="images/${currentScenario.scenarioImage}" alt="${currentScenario.inventor}" class="img-fluid">`;
   }
 
   highlightState(stop.state);
@@ -273,7 +291,7 @@ function setupMap() {
       style = svgDoc.createElement('style');
       svgDoc.querySelector('svg').appendChild(style);
     }
-    
+
     // Add styles for highlighted and hover states
     style.textContent += `
       .highlighted { fill: yellow !important; }
@@ -306,7 +324,7 @@ function setupMap() {
     updateMapHoverColor();
 
     const paths = svgDoc.querySelectorAll('path');
-    paths.forEach(path => {      
+    paths.forEach(path => {
       path.addEventListener('click', () => {
         const titleElement = path.querySelector('title');
         if (titleElement) {
@@ -321,9 +339,9 @@ function setupMap() {
 // Update map hover color based on current theme
 function updateMapHoverColor() {
   if (!svgDoc) return;
-  
+
   let hoverColor, highlightColor, possibleStateColor;
-  
+
   if (document.body.classList.contains('theme-dark')) {
     hoverColor = '#444444'; // Darker hover for dark theme
     highlightColor = '#ffd700'; // Gold color for highlighted states in dark theme
@@ -337,11 +355,11 @@ function updateMapHoverColor() {
     highlightColor = '#ffeb3b'; // Yellow for highlighted states in default theme
     possibleStateColor = '#9dcdb7'; // Light blue for possible states in default theme
   }
-  
+
   // Set the CSS variables for hover and highlight colors
   svgDoc.documentElement.style.setProperty('--hover-state-color', hoverColor);
   svgDoc.documentElement.style.setProperty('--possible-state-color', possibleStateColor);
-  
+
   // Update the highlight style
   let styleElement = svgDoc.querySelector('style');
   if (styleElement) {
@@ -357,29 +375,15 @@ function updateMapHoverColor() {
 
 // Check if the selected state is correct
 function checkStateSelection(selectedState) {
-  // First, remove highlighting from any previously highlighted state
-  if (svgDoc) {
-    const paths = svgDoc.querySelectorAll('path.highlighted');
-    paths.forEach(path => path.classList.remove('highlighted'));
-    
-    // Add highlighting to the selected state
-    const allPaths = svgDoc.querySelectorAll('path');
-    allPaths.forEach(path => {
-      const titleElement = path.querySelector('title');
-      if (titleElement && titleElement.textContent.trim().toLowerCase() === selectedState.toLowerCase()) {
-        path.classList.add('highlighted');
-      }
-    });
-  }
-  
-  // Then check if the selection is correct
-  const currentStop = currentScenario.stops[currentStopIndex];
-  if (selectedState.toLowerCase() === currentStop.nextState?.toLowerCase()) {
-    currentStopIndex++;
-    showStop(currentStopIndex);
-  } else {
-    const cluePanel = document.getElementById('clue-panel');
-    cluePanel.innerHTML += `<p class="text-danger">No sign of ${currentScenario.inventor}—try again!</p>`;
+  if (currentStopIndex < currentScenario.scenarioLength - 1) {
+    const nextStop = gameSequence[currentStopIndex + 1];
+    if (selectedState.toLowerCase() === nextStop.state.toLowerCase()) {
+      currentStopIndex++;
+      showStop(currentStopIndex);
+    } else {
+      const cluePanel = document.getElementById('clue-panel');
+      cluePanel.innerHTML += `<p class="text-danger">No sign of ${currentScenario.inventor} in ${selectedState}—try again!</p>`;
+    }
   }
 }
 

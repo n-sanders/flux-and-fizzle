@@ -2,7 +2,8 @@
   "scenarioName": "Cloud Fireworks",
   "inventor": "Fiona Fizzle",
   "scenarioImage": "fizzle.jpg",
-  "introduction": "Fiona Fizzle has run off to test her cloud dispersal firework to help regional industries maximize their natural resources. We have reports of her in a rowboat on Mille Lacs Lake north of the Twin Cities. If you leave now, you might find her still experimenting!",
+  "scenarioLength": 4,
+  "introduction": "Fiona Fizzle has run off to test her cloud dispersal firework that makes clear skies to help regional industries maximize their natural resources. She left her research notebook behind which will be key to tracking her across the midwest. If you leave now, you might find her still experimenting!",
   "possibleStates": [
     "Minnesota",
     "Wisconsin",
@@ -20,32 +21,46 @@
   "research": "<p>Maximizing local industries will cause a huge boon for the state economies! Every outdoor industry would benefit from a little more sunshine.</p><p><strong>Illinois</strong>: The soybean capital of the Midwest thrives on sun-soaked fields. Clear skies courtesy of my invention could supercharge soy growth—just think of the tofu and soy sauce possibilities!</p><p><strong>Iowa</strong>: Known for its corn fields, this state could see a bumper crop with clear skies. Increased yields are a sure thing, as long as I don’t accidentally disperse a rain cloud and soggy-up the harvest!</p><p><strong>Minnesota</strong>: The Land of 10,000 Lakes gives plenty of places for the locals to fish, and who wouldn’t want to fish in the sunshine? My Cloud Fireworks could make every cast a golden one—just don’t forget the sunscreen!</p><p><strong>North Dakota</strong>: Famous for its honey production, those busy bees need sunny days to buzz around collecting nectar. Cloud Fireworks could mean sweeter yields—imagine the headlines: ‘Fizzle’s Fireworks Save the Honey Harvest!’</p><p><strong>South Dakota</strong>: Oil fields stretch across the plains, pumping black gold under the sun. My fireworks could keep the skies clear for smoother drilling operations—no pesky clouds to slow down the rigs!</p><p><strong>Wisconsin</strong>: Dairy cows here churn out the most cheese in the country, and I know I’m happier milking in the sun. Clear skies might just make those cows moo with glee—and boost cheese production to boot!</p>",
   "stops": [
     {
+      "stopId": "mn-stop",
+      "clue": "She told me the fishermen will love guaranteed sunshine!",
       "state": "Minnesota",
       "fact": "Known as the Land of 10,000 Lakes, perfect for water-based industries.",
-      "witnessImage": "fisherman.jpg",
-      "clue": "Fiona’s fireworks drifted east to where they churn out cheese and milk galore!",
-      "nextState": "Wisconsin"
+      "witnessImage": "fisherman.jpg"
     },
     {
+      "stopId": "wi-stop",
+      "clue": "She said the dairy farmers will appreciate the extra sunshine for their cows.",
       "state": "Wisconsin",
       "fact": "Famous for its dairy industry, producing more cheese than any other state.",
-      "witnessImage": "dairy-farmer.jpg",
-      "clue": "Fiona giggled and floated south to where corn fields stretch to the horizon!",
-      "nextState": "Iowa"
+      "witnessImage": "dairy-farmer.jpg"
     },
     {
+      "stopId": "ia-stop",
+      "clue": "She mentioned the cornfields would thrive with more sunshine.",
       "state": "Iowa",
       "fact": "Leads the U.S. in corn production, fueling food and ethanol industries.",
-      "witnessImage": "farmer.jpg",
-      "clue": "Fiona’s clouds zipped west to where black gold pumps from the ground!",
-      "nextState": "South Dakota"
+      "witnessImage": "farmer.jpg"
     },
     {
+      "stopId": "sd-stop",
+      "clue": "She said even though oil rigs won't care about the sunshine, the workers certainly will.",
       "state": "South Dakota",
       "fact": "Has growing oil fields in the west, tapping into the Bakken Formation.",
-      "witnessImage": "fizzle.jpg",
-      "clue": "Caught her! Fiona’s firework is clearing clouds over the oil rigs!",
-      "nextState": null
+      "witnessImage": "oil-rig.jpg"
+    },
+    {
+      "stopId": "il-stop",
+      "clue": "She said soybeans grow faster with more sunshine",
+      "state": "Illinois",
+      "fact": "The soybean capital of the Midwest.",
+      "witnessImage": "farmer.jpg"
+    },
+    {
+      "stopId": "nd-stop",
+      "clue": "She said honey bees love sunshine as much as humans.",
+      "state": "North Dakota",
+      "fact": "The top honey producing state in the US.",
+      "witnessImage": "beekeeper.jpg"
     }
   ]
 }

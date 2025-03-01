@@ -2,46 +2,83 @@
   "scenarioName": "Flux-o-Graph",
   "inventor": "Percy Flux",
   "scenarioImage": "flux.jpg",
-  "introduction": "Percy Flux has vanished with his Flux-o-Graph Camera, a gadget meant to capture the spirit of Midwest landmarks. He was last spotted adjusting its lenses at the base of Mount Rushmore in South Dakota. Chase him down before he recalibrates it out of reach!",
+  "scenarioLength": 5,
+  "introduction": "Percy Flux has vanished with his Flux-o-Graph Camera, a gadget meant to capture the spirit of Midwest landmarks. Unfortunately, Percy left before our simulations showed that once the camera runs out of memory it explodes! Take his research notes with you and chase him down before it's too late!",
   "possibleStates": [
     "Minnesota",
     "Wisconsin",
     "Iowa",
-    "South Dakota",
     "North Dakota",
+    "South Dakota",
     "Nebraska",
     "Illinois",
+    "Michigan",
     "Texas"
   ],
-  "research": "Field Log 14: Initiated Flux-o-Graph at Mount Rushmore—granite faces demand precise calibration, 82% clarity. Moved north to North Dakota’s Badlands—rugged buttes test depth perception, wind interference noted. Eastward to Minnesota, Lake Superior’s vast waters shimmer—lens fogged briefly, adjusted. South now, Iowa’s Mississippi River flows from those lakes—current’s rhythm syncs with camera’s hum. Landmarks captured: 4/4.",
+  "research": "<p>Field Log 14: Flux-o-Graph calibration for Midwest landmarks. Targets include:</p><ul><li>Mount Rushmore, South Dakota: Granite faces, detail capture.</li><li>Badlands, North Dakota: Rugged terrain, depth perception.</li><li>Lake Superior, Minnesota: Largest freshwater lake, humidity control.</li><li>Mississippi River, Iowa: Flowing water, motion capture.</li><li>Rio Grande, Texas: Canyon vistas, harsh lighting.</li><li>Apostle Islands, Wisconsin: Rock formations, color accuracy.</li><li>Chicago skyline, Illinois: Vertical range, urban lighting.</li><li>Hot and Cold, Michigan Upper Peninsula: Sauna steam will test exposure limits.</li><li>Nebraska Highway I80 Bridge, Historic Oregon Trail Museum, detail capture.</li></ul><p>Each capture consumes 25% memory—must manage carefully to avoid overload.</p>",
   "stops": [
     {
+      "stopId": "sd-stop",
+      "clue": "I heard Percy muttering about capturing 'four stone giants'—sounds like he's headed to South Dakota.",
       "state": "South Dakota",
       "fact": "Mount Rushmore features the carved faces of four U.S. presidents—Washington, Jefferson, Lincoln, and Roosevelt—etched into granite.",
-      "witnessImage": "ranger.png",
-      "clue": "Percy muttered about focusing his camera north where the land turns wild and rugged!",
-      "nextState": "North Dakota"
+      "witnessImage": "ranger.png"
     },
     {
+      "stopId": "nd-stop",
+      "clue": "Percy was fascinated by 'nature's sculpture garden'—probably the Badlands in North Dakota.",
       "state": "North Dakota",
       "fact": "The Badlands in Theodore Roosevelt National Park are a rugged landscape of eroded buttes and deep canyons.",
-      "witnessImage": "hiker.png",
-      "clue": "Percy’s camera whirred east toward a state with water so vast it’s like an inland sea!",
-      "nextState": "Minnesota"
+      "witnessImage": "hiker.png"
     },
     {
+      "stopId": "mn-stop",
+      "clue": "He kept talking about 'the biggest lake you've ever seen'—must be Lake Superior in Minnesota.",
       "state": "Minnesota",
       "fact": "Lake Superior, touching Minnesota’s north shore, is the largest freshwater lake in the world by surface area.",
-      "witnessImage": "keeper.png",
-      "clue": "Percy packed up and drifted south to where a river’s birthplace flows into legend!",
-      "nextState": "Iowa"
+      "witnessImage": "keeper.png"
     },
     {
+      "stopId": "ia-stop",
+      "clue": "Percy mentioned following 'the great river's path'—likely the Mississippi in Iowa.",
       "state": "Iowa",
       "fact": "The Mississippi River, starting at Lake Itasca in Minnesota, flows through Iowa’s eastern border, shaping its history.",
-      "witnessImage": "percy.png",
-      "clue": "Caught him! Percy’s Flux-o-Graph is humming along the riverbank, lenses dialed to perfection!",
-      "nextState": null
+      "witnessImage": "captain.png"
+    },
+    {
+      "stopId": "tx-stop",
+      "clue": "He said something about 'a river that paints the canyons'—I think he's going to the Rio Grande in Texas.",
+      "state": "Texas",
+      "fact": "The Rio Grande flows through the state, carrying the color of its name—red, orange, and yellow.",
+      "witnessImage": "explorer.png"
+    },
+    {
+      "stopId": "wi-stop",
+      "clue": "Percy was excited about 'islands with stories in stone'—probably the Apostle Islands in Wisconsin.",
+      "state": "Wisconsin",
+      "fact": "Home to the Apostle Islands, a stunning archipelago on Lake Superior with historic lighthouses and sea caves.",
+      "witnessImage": "fisherman.png"
+    },
+    {
+      "stopId": "il-stop",
+      "clue": "He mentioned 'a city where buildings touch the sky'—definitely Chicago in Illinois.",
+      "state": "Illinois",
+      "fact": "Features the iconic Chicago skyline, including the Willis Tower, once the world's tallest building.",
+      "witnessImage": "architect.png"
+    },
+    {
+      "stopId": "mi-stop",
+      "clue": "Percy was fascinated by 'the land of saunas and steam'—likely the Upper Peninsula of Michigan.",
+      "state": "Michigan",
+      "fact": "The Upper Peninsula of Michigan is known for its strong Finnish heritage, boasting more saunas per capita than anywhere else in the U.S.",
+      "witnessImage": "sauna.png"
+    },
+    {
+      "stopId": "ne-stop",
+      "clue": "Percy raved about 'a museum spanning the highway'—he’s got to be at the Great Platte River Road Archway in Nebraska.",
+      "state": "Nebraska",
+      "fact": "The Great Platte River Road Archway Monument, spanning I-80 near Kearney, is a museum celebrating the Oregon Trail and over 200 years of westward travel history.",
+      "witnessImage": "pioneer.png"
     }
   ]
 }
