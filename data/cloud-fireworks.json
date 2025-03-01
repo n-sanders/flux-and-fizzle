@@ -2,7 +2,7 @@
   "scenarioName": "Cloud Fireworks",
   "inventor": "Fiona Fizzle",
   "scenarioImage": "fizzle.jpg",
-  "scenarioLength": 4,
+  "scenarioLength": 6,
   "introduction": "Fiona Fizzle has run off to test her cloud dispersal firework that makes clear skies to help regional industries maximize their natural resources. She left her research notebook behind which will be key to tracking her across the midwest. If you leave now, you might find her still experimenting!",
   "possibleStates": [
     "Minnesota",
@@ -53,7 +53,7 @@
       "clue": "She said soybeans grow faster with more sunshine",
       "state": "Illinois",
       "fact": "The soybean capital of the Midwest.",
-      "witnessImage": "farmer.jpg"
+      "witnessImage": "soybean-farmers.jpg"
     },
     {
       "stopId": "nd-stop",

@@ -2,7 +2,7 @@
   "scenarioName": "Flux-o-Graph",
   "inventor": "Percy Flux",
   "scenarioImage": "flux.jpg",
-  "scenarioLength": 5,
+  "scenarioLength": 7,
   "introduction": "Percy Flux has vanished with his Flux-o-Graph Camera, a gadget meant to capture the spirit of Midwest landmarks. Unfortunately, Percy left before our simulations showed that once the camera runs out of memory it explodes! Take his research notes with you and chase him down before it's too late!",
   "possibleStates": [
     "Minnesota",
@@ -22,63 +22,63 @@
       "clue": "I heard Percy muttering about capturing 'four stone giants'—sounds like he's headed to South Dakota.",
       "state": "South Dakota",
       "fact": "Mount Rushmore features the carved faces of four U.S. presidents—Washington, Jefferson, Lincoln, and Roosevelt—etched into granite.",
-      "witnessImage": "ranger.png"
+      "witnessImage": "mount-rushmore.jpg"
     },
     {
       "stopId": "nd-stop",
       "clue": "Percy was fascinated by 'nature's sculpture garden'—probably the Badlands in North Dakota.",
       "state": "North Dakota",
       "fact": "The Badlands in Theodore Roosevelt National Park are a rugged landscape of eroded buttes and deep canyons.",
-      "witnessImage": "hiker.png"
+      "witnessImage": "badlands.jpg"
     },
     {
       "stopId": "mn-stop",
       "clue": "He kept talking about 'the biggest lake you've ever seen'—must be Lake Superior in Minnesota.",
       "state": "Minnesota",
       "fact": "Lake Superior, touching Minnesota’s north shore, is the largest freshwater lake in the world by surface area.",
-      "witnessImage": "keeper.png"
+      "witnessImage": "lake-superior.jpg"
     },
     {
       "stopId": "ia-stop",
       "clue": "Percy mentioned following 'the great river's path'—likely the Mississippi in Iowa.",
       "state": "Iowa",
       "fact": "The Mississippi River, starting at Lake Itasca in Minnesota, flows through Iowa’s eastern border, shaping its history.",
-      "witnessImage": "captain.png"
+      "witnessImage": "mississippi-river.jpg"
     },
     {
       "stopId": "tx-stop",
       "clue": "He said something about 'a river that paints the canyons'—I think he's going to the Rio Grande in Texas.",
       "state": "Texas",
       "fact": "The Rio Grande flows through the state, carrying the color of its name—red, orange, and yellow.",
-      "witnessImage": "explorer.png"
+      "witnessImage": "rio-grande.jpg"
     },
     {
       "stopId": "wi-stop",
       "clue": "Percy was excited about 'islands with stories in stone'—probably the Apostle Islands in Wisconsin.",
       "state": "Wisconsin",
       "fact": "Home to the Apostle Islands, a stunning archipelago on Lake Superior with historic lighthouses and sea caves.",
-      "witnessImage": "fisherman.png"
+      "witnessImage": "apostle-islands.jpg"
     },
     {
       "stopId": "il-stop",
       "clue": "He mentioned 'a city where buildings touch the sky'—definitely Chicago in Illinois.",
       "state": "Illinois",
       "fact": "Features the iconic Chicago skyline, including the Willis Tower, once the world's tallest building.",
-      "witnessImage": "architect.png"
+      "witnessImage": "chicago-skyline.jpg"
     },
     {
       "stopId": "mi-stop",
       "clue": "Percy was fascinated by 'the land of saunas and steam'—likely the Upper Peninsula of Michigan.",
       "state": "Michigan",
       "fact": "The Upper Peninsula of Michigan is known for its strong Finnish heritage, boasting more saunas per capita than anywhere else in the U.S.",
-      "witnessImage": "sauna.png"
+      "witnessImage": "sauna.jpg"
     },
     {
       "stopId": "ne-stop",
       "clue": "Percy raved about 'a museum spanning the highway'—he’s got to be at the Great Platte River Road Archway in Nebraska.",
       "state": "Nebraska",
       "fact": "The Great Platte River Road Archway Monument, spanning I-80 near Kearney, is a museum celebrating the Oregon Trail and over 200 years of westward travel history.",
-      "witnessImage": "pioneer.png"
+      "witnessImage": "museum.jpg"
     }
   ]
 }
