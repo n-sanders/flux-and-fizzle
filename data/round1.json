@@ -1,0 +1,36 @@
+{
+    "roundId": 1,
+    "inventor": "Fiona Fizzle",
+    "introduction": "Fiona Fizzle has run off to test her cloud dispersal firework to help regional industries maximize their natural resources. We have reports of her in a rowboat on Mille Lacs Lake north of the Twin Cities. If you leave now, you might find her still experimenting!",
+    "research": "Log 23: Floated over Minnesota’s 10,000 lakes today—water’s perfect for fishing folks! Drifted east to where dairy rules, cheese and milk everywhere. Next, I’ll head south to corn country—fields so big you’d get lost! Then west to where oil pumps chug along, black gold under the plains. Cloud fireworks are fizzing great!",
+    "stops": [
+      {
+        "state": "Minnesota",
+        "fact": "Known as the Land of 10,000 Lakes, perfect for water-based industries.",
+        "witnessImage": "fisherman.jpg",
+        "clue": "Fiona’s fireworks drifted east to where they churn out cheese and milk galore!",
+        "nextState": "Wisconsin"
+      },
+      {
+        "state": "Wisconsin",
+        "fact": "Famous for its dairy industry, producing more cheese than any other state.",
+        "witnessImage": "dairy-farmer.jpg",
+        "clue": "Fiona giggled and floated south to where corn fields stretch to the horizon!",
+        "nextState": "Iowa"
+      },
+      {
+        "state": "Iowa",
+        "fact": "Leads the U.S. in corn production, fueling food and ethanol industries.",
+        "witnessImage": "farmer.jpg",
+        "clue": "Fiona’s clouds zipped west to where black gold pumps from the ground!",
+        "nextState": "South Dakota"
+      },
+      {
+        "state": "South Dakota",
+        "fact": "Has growing oil fields in the west, tapping into the Bakken Formation.",
+        "witnessImage": "fizzle.jpg",
+        "clue": "Caught her! Fiona’s firework is clearing clouds over the oil rigs!",
+        "nextState": null
+      }
+    ]
+  }
